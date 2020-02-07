@@ -45,7 +45,8 @@ int main(){
   UINT8 buff[256];
   UINT8 diagLine[3] = {LIN_SIMP, 0, 255};
   /* -- Draw simple line -- */
-  pt_draw_create_bitmap(diagLine, 3, buff, 2);
+  pt_draw_create_bitmap(diagLine, 3, buff, 8);
+  ppm("diag-line.ppm", buff, 8);
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
