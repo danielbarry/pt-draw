@@ -19,16 +19,16 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
         x2 = (desc[++z] & 0b11110000) >> 4;
         y2 = desc[z] & 0b1111;
         /* Scale the points up if needed */
-        if(size > 16){
-          int scale = size / 16;
+        if(size > 15){
+          int scale = size / 15;
           x1 = x1 * scale;
           y1 = y1 * scale;
           x2 = x2 * scale;
           y2 = y2 * scale;
         }
         /* Scale the points down if needed */
-        if(size < 16){
-          int scale = 16 / size;
+        if(size < 15){
+          int scale = 15 / size;
           x1 = x1 / scale;
           y1 = y1 / scale;
           x2 = x2 / scale;
