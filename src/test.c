@@ -48,6 +48,7 @@ int main(){
   UINT8 buff[BUFFER_SIZE];
   UINT8 diagLineA[3] = {LIN_SIMP, 0b00000000, 0b11111111};
   UINT8 diagLineB[3] = {LIN_SIMP, 0b11110000, 0b00001111};
+  UINT8 cross[6] = {LIN_SIMP, 0b00100010, 0b11011101, LIN_SIMP, 0b11010010, 0b00101101};
   /* -- Draw small simple line (a) -- */
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(diagLineA, 3, buff, 4);
@@ -64,6 +65,10 @@ int main(){
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(diagLineB, 3, buff, 256);
   ppm("diag-line-b-256.ppm", buff, 256);
+  /* -- Draw cross -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(cross, 6, buff, 256);
+  ppm("cross.ppm", buff, 256);
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
