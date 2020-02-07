@@ -26,8 +26,8 @@ void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
     y2 = y2 / scale;
   }
   /* Deltas and stepping */
-  dx = abs(x1 - x2);
-  dy = abs(y1 - y2);
+  dx = abs(x2 - x1);
+  dy = abs(y2 - y1);
   sx = x1 < x2 ? 1 : -1;
   sy = y1 < y2 ? 1 : -1;
   /* Draw line into buffer */
