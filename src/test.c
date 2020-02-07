@@ -11,6 +11,13 @@
 int pass;
 int fail;
 
+/**
+ * main()
+ *
+ * The main entry method for the tests.
+ *
+ * @return The exit code of the tests.
+ **/
 int main(){
   /* Setup global variables */
   pass = fail = 0;
