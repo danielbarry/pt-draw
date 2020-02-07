@@ -69,6 +69,7 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
         /* TODO: Process simple curve. */
         break;
       case SEQ_SIMP:
+        /* TODO: Handle fill condition. */
         for(unsigned int i = 0; i < shapeLen; i++){
           ++z;
           pt_draw_simple_line(desc[z], desc[z + 1], buff, size);
