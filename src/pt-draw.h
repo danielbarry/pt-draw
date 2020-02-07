@@ -5,7 +5,7 @@
  **/
 #ifndef PT_DRAW_H
 #define PT_DRAW_H
-  #define UINT8 char
+  #define UINT8 unsigned char
 
   #define SHAPE_MASK (0b11 << 0)
   #define LIN_SIMP   (0)
