@@ -7,6 +7,17 @@
 #define PT_DRAW_H
   #define UINT8 char
 
+  #define SHAPE_MASK (0b11 << 0)
+  #define LIN_SIMP   (0)
+  #define LIN_CURV   (1)
+  #define SEQ_SIMP   (2)
+  #define SEQ_CURV   (3)
+  #define LINE_MASK  (0b1 << 0)
+  #define SEQ_MASK   (0b1 << 1)
+  #define FILL_MASK  (0b1 << 2)
+  #define RES_MASK   (0b1 << 3)
+  #define LEN_MASK   (0b1111 << 4)
+
   /**
    * pt_draw_create_bitmap()
    *
