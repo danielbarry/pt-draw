@@ -12,6 +12,26 @@ int pass;
 int fail;
 
 /**
+ * ppm()
+ *
+ * Print a binary array to disk.
+ *
+ * @param fn The filename to be saved to disk.
+ * @param data The pointer to the buffer array.
+ * @param size The size (width and height) of the data in the buffer.
+ **/
+void ppm(char* fn, UINT8* data, unsigned int size){
+  FILE* f = fopen(fn, "w");
+  fprintf(f, "P1\n%i %i\n", size, size);
+  for(unsigned int i = 0; i < size * size; i++){
+    UINT8 r = data[i / 8] & (0b1 << (7 - (i % 8)));
+    char c[1] = { r ? '1' : '0' };
+    fwrite(c, 1, 1, f);
+  }
+  fclose(f);
+}
+
+/**
  * main()
  *
  * The main entry method for the tests.
