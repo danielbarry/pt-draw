@@ -14,9 +14,11 @@ int fail;
 int main(){
   /* Setup global variables */
   pass = fail = 0;
-  /* Perform tests */
-  ASSERT(TRUE, "test");
-  ASSERT(FALSE, "hello");
+  /* Create test data */
+  UINT8 buff[256];
+  UINT8 diagLine[3] = {LIN_SIMP, 0, 255};
+  /* -- Draw simple line -- */
+  pt_draw_create_bitmap(diagLine, 3, buff, 2);
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
