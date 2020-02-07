@@ -1,12 +1,15 @@
 #include "pt-draw.c"
 
 #include <stdio.h>
+#include <string.h>
 
 #define FALSE 0
 #define TRUE 1
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 #define ASSERT(x,s) {x ? ++pass : ++fail; printf("  %s %s::%i %s\n", (x ? "[ OK ]  " : "  [FAIL]"), __FUNCTION__, __LINE__, s);}
+
+#define BUFFER_SIZE 65536
 
 int pass;
 int fail;
@@ -42,11 +45,25 @@ int main(){
   /* Setup global variables */
   pass = fail = 0;
   /* Create test data */
-  UINT8 buff[256];
-  UINT8 diagLine[3] = {LIN_SIMP, 0, 255};
-  /* -- Draw simple line -- */
-  pt_draw_create_bitmap(diagLine, 3, buff, 8);
-  ppm("diag-line.ppm", buff, 8);
+  UINT8 buff[BUFFER_SIZE];
+  UINT8 diagLineA[3] = {LIN_SIMP, 0b00000000, 0b11111111};
+  UINT8 diagLineB[3] = {LIN_SIMP, 0b11110000, 0b00001111};
+  /* -- Draw small simple line (a) -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(diagLineA, 3, buff, 4);
+  ppm("diag-line-a-4.ppm", buff, 4);
+  /* -- Draw simple line (a) -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(diagLineA, 3, buff, 16);
+  ppm("diag-line-a-16.ppm", buff, 16);
+  /* -- Draw large simple line (a) -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(diagLineA, 3, buff, 256);
+  ppm("diag-line-a-256.ppm", buff, 256);
+  /* -- Draw large simple line (b) -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(diagLineB, 3, buff, 256);
+  ppm("diag-line-b-256.ppm", buff, 256);
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
