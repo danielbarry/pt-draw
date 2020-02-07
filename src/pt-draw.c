@@ -59,7 +59,7 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
   for(unsigned int z = 0; z < len; z++){
     /* Get line properties */
     UINT8 shape = desc[z] & SHAPE_MASK;
-    UINT8 shapeLen = (desc[z] & LEN_MASK) >> 4;
+    UINT8 shapeLen = ((desc[z] & LEN_MASK) >> 4) + 1;
     /* Generate shape */
     switch(shape){
       case LIN_SIMP:
