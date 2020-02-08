@@ -70,7 +70,6 @@ void pt_draw_curved_line(UINT8 xy1, UINT8 xy2, UINT8 cxy, UINT8* buff, unsigned 
   y2 = xy2 & 0b1111;
   cx = (cxy & 0b11110000) >> 4;
   cy = cxy & 0b1111;
-  printf("(%i,%i) (%i,%i) (%i,%i)", x1, y1, x2, y2, cx, cy); // TODO
   /* Scale the points up if needed */
   if(size > 15){
     int scale = size / 15;
