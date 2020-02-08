@@ -51,6 +51,7 @@ int main(){
   UINT8 cross[6] = {LIN_SIMP, 0x22, 0xDD, LIN_SIMP, 0xD2, 0x2D};
   UINT8 square[6] = {SEQ_SIMP | (3 << 4), 0x22, 0xD2, 0xDD, 0x2D, 0x22};
   UINT8 squareCross[12] = {LIN_SIMP, 0x22, 0xDD, LIN_SIMP, 0xD2, 0x2D, SEQ_SIMP | (3 << 4), 0x22, 0xD2, 0xDD, 0x2D, 0x22};
+  UINT8 curve[4] = {LIN_CURV, 0x00, 0xFF, 0xF0};
   /* -- Draw small simple line (a) -- */
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(diagLineA, 3, buff, 4);
@@ -79,6 +80,10 @@ int main(){
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(squareCross, 12, buff, 256);
   ppm("square-cross.ppm", buff, 256);
+  /* -- Draw simple curve -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(curve, 4, buff, 256);
+  ppm("curve.ppm", buff, 256);
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
