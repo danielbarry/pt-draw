@@ -22,6 +22,18 @@ Output result:
 
 ![Output letter](doc/letter-s.png)
 
+In the following image you can see how the above HEX values influence the shape
+of the curve.
+
+![Output letter (debug)](doc/letter-s-debug.png)
+
+Key:
+
+* Blue - HEX values from the description sequence
+* Red - Order of the bytes in the sequence (and order the shape is drawn)
+* Green - Direct line to outer points
+* Magenta - The pull from the "curve" point
+
 ## Documentation
 
 The following is documentation on the project:
