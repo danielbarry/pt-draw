@@ -63,7 +63,8 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
     /* Generate shape */
     switch(shape){
       case LIN_SIMP:
-        pt_draw_simple_line(desc[++z], desc[++z], buff, size);
+        pt_draw_simple_line(desc[z + 1], desc[z + 2], buff, size);
+        z += 2;
         break;
       case LIN_CURV:
         /* TODO: Process simple curve. */
