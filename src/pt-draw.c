@@ -138,8 +138,13 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
         ++z;
         break;
       case SEQ_CURV:
-        /* TODO: Process sequenced curve. */
         /* TODO: Handle fill condition. */
+        pt_draw_curved_line(desc[z + 1], desc[z + 2], desc[z + 3], buff, size);
+        for(unsigned int i = 1; i < shapeLen; i++){
+          z += 2;
+          pt_draw_curved_line(desc[z + 1], desc[z + 2], desc[z + 3], buff, size);
+        }
+        z += 3;
         break;
     }
   }
