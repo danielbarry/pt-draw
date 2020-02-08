@@ -29,3 +29,9 @@ The following is documentation on the project:
 * [Algorithms](doc/algorithms.md)
 * [API](doc/api.md)
 * [File format](doc/file-format.md)
+
+## TODO
+
+* [ ] Test coverage (prevent code regression)
+* [ ] Fuzzing for sequence input (no valid or invalid sequence should crash)
+* [ ] Shape fill (for simple shapes, trying to keep efficient)
