@@ -4,29 +4,8 @@
 
 #define GET_POINT(i,j,p) ( i + ((j - i) * p) )
 
-void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
-  int x1, y1, x2, y2, dx, dy, sx, sy, err, e2;
-  /* Get line variables */
-  x1 = (xy1 & 0b11110000) >> 4;
-  y1 = xy1 & 0b1111;
-  x2 = (xy2 & 0b11110000) >> 4;
-  y2 = xy2 & 0b1111;
-  /* Scale the points up if needed */
-  if(size > 15){
-    int scale = size / 15;
-    x1 = x1 * scale;
-    y1 = y1 * scale;
-    x2 = x2 * scale;
-    y2 = y2 * scale;
-  }
-  /* Scale the points down if needed */
-  if(size < 15){
-    int scale = 15 / size;
-    x1 = x1 / scale;
-    y1 = y1 / scale;
-    x2 = x2 / scale;
-    y2 = y2 / scale;
-  }
+void pt_draw_raw_line(int x1, int y1, int x2, int y2, UINT8* buff, unsigned int size){
+  int dx, dy, sx, sy, err, e2;
   /* Deltas and stepping */
   dx = abs(x2 - x1);
   dy = abs(y2 - y1);
@@ -53,6 +32,33 @@ void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
       y1 += sy;
     }
   }
+}
+
+void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
+  int x1, y1, x2, y2;
+  /* Get line variables */
+  x1 = (xy1 & 0b11110000) >> 4;
+  y1 = xy1 & 0b1111;
+  x2 = (xy2 & 0b11110000) >> 4;
+  y2 = xy2 & 0b1111;
+  /* Scale the points up if needed */
+  if(size > 15){
+    int scale = size / 15;
+    x1 = x1 * scale;
+    y1 = y1 * scale;
+    x2 = x2 * scale;
+    y2 = y2 * scale;
+  }
+  /* Scale the points down if needed */
+  if(size < 15){
+    int scale = 15 / size;
+    x1 = x1 / scale;
+    y1 = y1 / scale;
+    x2 = x2 / scale;
+    y2 = y2 / scale;
+  }
+  /* Draw raw line */
+  pt_draw_raw_line(x1, y1, x2, y2, buff, size);
 }
 
 void pt_draw_curved_line(UINT8 xy1, UINT8 xy2, UINT8 cxy, UINT8* buff, unsigned int size){

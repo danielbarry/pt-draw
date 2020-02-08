@@ -19,6 +19,24 @@
   #define LEN_MASK   (0b1111 << 4)
 
   /**
+   * pt_draw_raw_line()
+   *
+   * Draw a raw line (measured in pixels) to the binary bitmap from the given
+   * parameters.
+   *
+   * @param x1 The X1 position as a pixel coordinate.
+   * @param y1 The Y1 position as a pixel coordinate.
+   * @param x2 The X2 position as a pixel coordinate.
+   * @param y2 The Y2 position as a pixel coordinate.
+   * @param buff A pointer to the binary buffer to be set. The buffer must have
+   * adequate space for storing the resulting data.
+   * @param size The size of the width and height (size = width = height). The
+   * number of pixels in total is size x size, total number of bytes is (size x
+   * size) / 8 rounded up to the nearest byte.
+   **/
+  void pt_draw_raw_line(int x1, int y1, int x2, int y2, UINT8* buff, unsigned int size);
+
+  /**
    * pt_draw_simple_line()
    *
    * Draw a simple linear line to the binary bitmap from the given parameters.
