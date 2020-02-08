@@ -34,6 +34,22 @@
   void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size);
 
   /**
+   * pt_draw_curved_line()
+   *
+   * Draw a quadratic curved line to the binary bitmap from the given parameters.
+   *
+   * @param xy1 The (X1,Y1) pair in a single byte.
+   * @param xy2 The (X2,Y2) pair in a single byte.
+   * @param cxy The (CX,CX) pair in a single byte.
+   * @param buff A pointer to the binary buffer to be set. The buffer must have
+   * adequate space for storing the resulting data.
+   * @param size The size of the width and height (size = width = height). The
+   * number of pixels in total is size x size, total number of bytes is (size x
+   * size) / 8 rounded up to the nearest byte.
+   **/
+  void pt_draw_curved_line(UINT8 xy1, UINT8 xy2, UINT8 cxy, UINT8* buff, unsigned int size);
+
+  /**
    * pt_draw_create_bitmap()
    *
    * This method is used for creating a binary bitmap from the scalable vector
