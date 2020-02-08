@@ -10,6 +10,18 @@ This project has several goals:
 * Be usable on low-end hardware
 * Create simple, clean scalable graphics
 
+## Example
+
+The following is an example for drawing the letter "s" in 8 bytes (curves are
+set to 8 segments).
+
+    UINT8 l[8] = {SEQ_CURV | ((3 - 1) << 4), 0xD2, 0x00, 0x26, 0x77, 0xD8, 0xFF, 0x2D};
+    pt_draw_create_bitmap(l, 8, buff, 256);
+
+Output result:
+
+![Output letter](doc/letter-s.png)
+
 ## Documentation
 
 The following is documentation on the project:
