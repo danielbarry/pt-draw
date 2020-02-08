@@ -46,11 +46,11 @@ int main(){
   pass = fail = 0;
   /* Create test data */
   UINT8 buff[BUFFER_SIZE];
-  UINT8 diagLineA[3] = {LIN_SIMP, 0b00000000, 0b11111111};
-  UINT8 diagLineB[3] = {LIN_SIMP, 0b11110000, 0b00001111};
-  UINT8 cross[6] = {LIN_SIMP, 0b00100010, 0b11011101, LIN_SIMP, 0b11010010, 0b00101101};
-  UINT8 square[6] = {SEQ_SIMP | (3 << 4), 0b00100010, 0b11010010, 0b11011101, 0b00101101, 0b00100010};
-  UINT8 squareCross[12] = {LIN_SIMP, 0b00100010, 0b11011101, LIN_SIMP, 0b11010010, 0b00101101, SEQ_SIMP | (3 << 4), 0b00100010, 0b11010010, 0b11011101, 0b00101101, 0b00100010};
+  UINT8 diagLineA[3] = {LIN_SIMP, 0x00, 0xFF};
+  UINT8 diagLineB[3] = {LIN_SIMP, 0xF0, 0x0F};
+  UINT8 cross[6] = {LIN_SIMP, 0x22, 0xDD, LIN_SIMP, 0xD2, 0x2D};
+  UINT8 square[6] = {SEQ_SIMP | (3 << 4), 0x22, 0xD2, 0xDD, 0x2D, 0x22};
+  UINT8 squareCross[12] = {LIN_SIMP, 0x22, 0xDD, LIN_SIMP, 0xD2, 0x2D, SEQ_SIMP | (3 << 4), 0x22, 0xD2, 0xDD, 0x2D, 0x22};
   /* -- Draw small simple line (a) -- */
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(diagLineA, 3, buff, 4);
