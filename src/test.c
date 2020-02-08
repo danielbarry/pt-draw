@@ -51,7 +51,7 @@ int main(){
   UINT8 cross[6] = {LIN_SIMP, 0x22, 0xDD, LIN_SIMP, 0xD2, 0x2D};
   UINT8 square[6] = {SEQ_SIMP | ((4 - 1) << 4), 0x22, 0xD2, 0xDD, 0x2D, 0x22};
   UINT8 squareCross[12] = {LIN_SIMP, 0x22, 0xDD, LIN_SIMP, 0xD2, 0x2D, SEQ_SIMP | ((4 - 1) << 4), 0x22, 0xD2, 0xDD, 0x2D, 0x22};
-  UINT8 curve[4] = {LIN_CURV, 0x00, 0xFF, 0xF0};
+  UINT8 curve[4] = {LIN_CURV, 0x00, 0xF0, 0xFF};
   /* -- Draw small simple line (a) -- */
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(diagLineA, 3, buff, 4);

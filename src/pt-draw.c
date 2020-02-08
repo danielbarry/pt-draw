@@ -63,7 +63,7 @@ void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
   pt_draw_raw_line(x1, y1, x2, y2, buff, size);
 }
 
-void pt_draw_curved_line(UINT8 xy1, UINT8 xy2, UINT8 cxy, UINT8* buff, unsigned int size){
+void pt_draw_curved_line(UINT8 xy1, UINT8 cxy, UINT8 xy2, UINT8* buff, unsigned int size){
   int x1, y1, x2, y2, cx, cy, xa, ya, xb, yb, px, py, x, y;
   /* Get line variables */
   x1 = (xy1 & 0b11110000) >> 4;
