@@ -2,6 +2,8 @@
 
 #include <stdlib.h>
 
+#define NUM_SEGS 8
+#define SEG_SIZE ( 1.0f / NUM_SEGS )
 #define GET_POINT(i,j,p) ( i + ((j - i) * p) )
 
 void pt_draw_raw_line(int x1, int y1, int x2, int y2, UINT8* buff, unsigned int size){
@@ -62,7 +64,7 @@ void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
 }
 
 void pt_draw_curved_line(UINT8 xy1, UINT8 xy2, UINT8 cxy, UINT8* buff, unsigned int size){
-  int x1, y1, x2, y2, cx, cy, xa, ya, xb, yb, x, y;
+  int x1, y1, x2, y2, cx, cy, xa, ya, xb, yb, px, py, x, y;
   /* Get line variables */
   x1 = (xy1 & 0b11110000) >> 4;
   y1 = xy1 & 0b1111;
@@ -91,7 +93,9 @@ void pt_draw_curved_line(UINT8 xy1, UINT8 xy2, UINT8 cxy, UINT8* buff, unsigned 
     cy = cy / scale;
   }
   /* Draw quadratic curve */
-  for(float i = 0; i < 1; i += 0.01f){
+  px = x1;
+  py = y1;
+  for(float i = SEG_SIZE; i<= 1.0f; i += SEG_SIZE){
     /* Support points */
     xa = GET_POINT(x1, cx, i);
     ya = GET_POINT(y1, cy, i);
@@ -100,9 +104,11 @@ void pt_draw_curved_line(UINT8 xy1, UINT8 xy2, UINT8 cxy, UINT8* buff, unsigned 
     /* Draw points */
     x = GET_POINT(xa, xb, i);
     y = GET_POINT(ya, yb, i);
-    /* Set pixel */
-    int p = x + (y * size);
-    buff[p / 8] |= 0b1 << (7 - (p % 8));
+    /* Draw segment */
+    pt_draw_raw_line(px, py, x, y, buff, size);
+    /* Save current segment */
+    px = x;
+    py = y;
   }
 }
 
