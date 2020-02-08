@@ -5,6 +5,8 @@
 #define NUM_SEGS 8
 #define SEG_SIZE ( 1.0f / NUM_SEGS )
 #define GET_POINT(i,j,p) ( i + ((j - i) * p) )
+#define GET_NIBBLE_HIGH(i) ( (i & 0b11110000) >> 4 )
+#define GET_NIBBLE_LOW(i) ( i & 0b1111 )
 
 void pt_draw_raw_line(int x1, int y1, int x2, int y2, UINT8* buff, unsigned int size){
   int dx, dy, sx, sy, err, e2;
@@ -39,10 +41,10 @@ void pt_draw_raw_line(int x1, int y1, int x2, int y2, UINT8* buff, unsigned int 
 void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
   int x1, y1, x2, y2;
   /* Get line variables */
-  x1 = (xy1 & 0b11110000) >> 4;
-  y1 = xy1 & 0b1111;
-  x2 = (xy2 & 0b11110000) >> 4;
-  y2 = xy2 & 0b1111;
+  x1 = GET_NIBBLE_HIGH(xy1);
+  y1 = GET_NIBBLE_LOW(xy1);
+  x2 = GET_NIBBLE_HIGH(xy2);
+  y2 = GET_NIBBLE_LOW(xy2);
   /* Scale the points up if needed */
   if(size > 15){
     int scale = size / 15;
@@ -66,12 +68,12 @@ void pt_draw_simple_line(UINT8 xy1, UINT8 xy2, UINT8* buff, unsigned int size){
 void pt_draw_curved_line(UINT8 xy1, UINT8 cxy, UINT8 xy2, UINT8* buff, unsigned int size){
   int x1, y1, x2, y2, cx, cy, xa, ya, xb, yb, px, py, x, y;
   /* Get line variables */
-  x1 = (xy1 & 0b11110000) >> 4;
-  y1 = xy1 & 0b1111;
-  x2 = (xy2 & 0b11110000) >> 4;
-  y2 = xy2 & 0b1111;
-  cx = (cxy & 0b11110000) >> 4;
-  cy = cxy & 0b1111;
+  x1 = GET_NIBBLE_HIGH(xy1);
+  y1 = GET_NIBBLE_LOW(xy1);
+  x2 = GET_NIBBLE_HIGH(xy2);
+  y2 = GET_NIBBLE_LOW(xy2);
+  cx = GET_NIBBLE_HIGH(cxy);
+  cy = GET_NIBBLE_LOW(cxy);
   /* Scale the points up if needed */
   if(size > 15){
     int scale = size / 15;
