@@ -74,7 +74,7 @@ example is for NUM_LINES = 3, with fill:
 |------|--------------------------------|
 |0     |Shape selector, bits: [11000010]|
 |1     |(x1,y1)                         |
-|2     |(x2,y2)                         |
-|3     |(cx1,cy1) Centre of 1st curve   |
-|4     |(x3,y3)                         |
-|5     |(cx2,cy2) Centre of 2nd curve   |
+|2     |(cx1,cy1) Centre of 1st curve   |
+|3     |(x2,y2)                         |
+|4     |(cx2,cy2) Centre of 2nd curve   |
+|5     |(x3,y3)                         |
