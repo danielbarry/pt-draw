@@ -124,6 +124,7 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
           ++z;
           pt_draw_simple_line(desc[z], desc[z + 1], buff, size);
         }
+        ++z;
         break;
       case SEQ_CURV:
         /* TODO: Process sequenced curve. */
