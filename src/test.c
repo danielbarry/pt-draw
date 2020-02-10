@@ -1,3 +1,4 @@
+#include "icons.h"
 #include "pt-draw.c"
 
 #include <stdio.h>
@@ -94,6 +95,10 @@ int main(){
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(dollar, 14, buff, 256);
   ppm("dollar.ppm", buff, 256);
+  /* -- Draw bluetooth icon -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(ICON_BLUETOOTH, ICON_BLUETOOTH_LEN, buff, 256);
+  ppm("icon-bluetooth.ppm", buff, 256);
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
