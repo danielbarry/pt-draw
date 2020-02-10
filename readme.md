@@ -41,6 +41,7 @@ The following is documentation on the project:
 * [Algorithms](doc/algorithms.md)
 * [API](doc/api.md)
 * [File format](doc/file-format.md)
+* [Icons](doc/icons.md)
 
 ## TODO
 
