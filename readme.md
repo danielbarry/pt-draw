@@ -44,6 +44,9 @@ The following is documentation on the project:
 
 ## TODO
 
+* [ ] Simplify shape definition (2 shapes not 4, no bit shift for size)
+* [ ] 7 bit ASCI font definition
+* [ ] Basic icon set
 * [ ] Test coverage (prevent code regression)
 * [ ] Fuzzing for sequence input (no valid or invalid sequence should crash)
 * [ ] Shape fill (for simple shapes, trying to keep efficient)
