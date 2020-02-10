@@ -2,7 +2,10 @@
 
 #include <stdlib.h>
 
-#define NUM_SEGS 8
+#ifndef NUM_SEGS
+  #define NUM_SEGS 8
+#endif
+
 #define SEG_SIZE ( 1.0f / NUM_SEGS )
 #define GET_POINT(i,j,p) ( i + ((j - i) * p) )
 #define GET_NIBBLE_HIGH(i) ( (i & 0b11110000) >> 4 )
