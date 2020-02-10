@@ -45,8 +45,10 @@ The following is documentation on the project:
 
 ## TODO
 
+* [ ] Scaling bug (for small icons < 16 pixels)
 * [ ] Basic icon set
 * [ ] 7 bit ASCI font definition
 * [ ] Test coverage (prevent code regression)
 * [ ] Fuzzing for sequence input (no valid or invalid sequence should crash)
 * [ ] Shape fill (for simple shapes, trying to keep efficient)
+* [ ] Real-time anti-aliasing method for screen drawing
