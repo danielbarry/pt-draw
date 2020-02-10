@@ -120,18 +120,11 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
   for(unsigned int z = 0; z < len; z++){
     /* Get line properties */
     UINT8 shape = desc[z] & SHAPE_MASK;
-    UINT8 shapeLen = ((desc[z] & LEN_MASK) >> 4) + 1;
+    UINT8 shapeLen = (desc[z] & LEN_MASK) + 1;
     /* Generate shape */
     switch(shape){
-      case LIN_SIMP:
-        pt_draw_simple_line(desc[z + 1], desc[z + 2], buff, size);
-        z += 2;
-        break;
-      case LIN_CURV:
-        pt_draw_curved_line(desc[z + 1], desc[z + 2], desc[z + 3], buff, size);
-        z += 3;
-        break;
-      case SEQ_SIMP:
+      case LINE:
+        /* TODO: Test if line is closed. */
         /* TODO: Handle fill condition. */
         for(unsigned int i = 0; i < shapeLen; i++){
           ++z;
@@ -139,7 +132,8 @@ void pt_draw_create_bitmap(UINT8* desc, unsigned int len, UINT8* buff, unsigned 
         }
         ++z;
         break;
-      case SEQ_CURV:
+      case CURV:
+        /* TODO: Test if line is closed. */
         /* TODO: Handle fill condition. */
         pt_draw_curved_line(desc[z + 1], desc[z + 2], desc[z + 3], buff, size);
         for(unsigned int i = 1; i < shapeLen; i++){

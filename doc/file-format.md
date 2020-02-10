@@ -23,35 +23,12 @@ The shape selector byte tells the reader which type of shape is being drawn.
 
 |Bit|Description                                                |
 |---|-----------------------------------------------------------|
-|0-1|0: Simple line                                             |
-|   |1: Curved line                                             |
-|   |2: Simple line sequence                                    |
-|   |3: Curved line sequence                                    |
-|2  |0: No fill                                                 |
+|7  |0: Simple line sequence                                    |
+|   |1: Curved line sequence                                    |
+|6  |0: No fill                                                 |
 |   |1: Fill (assumes connected sequence)                       |
-|3  |Reserved                                                   |
-|4-7|Number of lines in the sequence, 16 maximum (starts from 1)|
-
-## Simple Line
-
-A simple line consists of 3 bytes:
-
-|Offset|Description                     |
-|------|--------------------------------|
-|0     |Shape selector, bits: [00000000]|
-|1     |(x1,y1)                         |
-|2     |(x2,y2)                         |
-
-## Curved Line
-
-A curved line consists of 4 bytes:
-
-|Offset|Description                     |
-|------|--------------------------------|
-|0     |Shape selector, bits: [01000000]|
-|1     |(x1,y1)                         |
-|2     |(x2,y2)                         |
-|3     |(cx,cy) Centre position of curve|
+|5-4|Reserved                                                   |
+|0-3|Number of lines in the sequence, 16 maximum (starts from 1)|
 
 ## Simple Line Sequence
 
