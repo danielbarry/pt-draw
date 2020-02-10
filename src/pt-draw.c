@@ -97,7 +97,7 @@ void pt_draw_curved_line(UINT8 xy1, UINT8 cxy, UINT8 xy2, UINT8* buff, unsigned 
   /* Draw quadratic curve */
   px = x1;
   py = y1;
-  for(float i = SEG_SIZE; i<= 1.0f; i += SEG_SIZE){
+  for(float i = SEG_SIZE; i <= 1.0f; i += SEG_SIZE){
     /* Support points */
     xa = GET_POINT(x1, cx, i);
     ya = GET_POINT(y1, cy, i);
