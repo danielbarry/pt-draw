@@ -99,6 +99,10 @@ int main(){
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(ICON_BLUETOOTH, ICON_BLUETOOTH_LEN, buff, 256);
   ppm("icon-bluetooth.ppm", buff, 256);
+  /* -- Draw message icon -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(ICON_MESSAGE, ICON_MESSAGE_LEN, buff, 256);
+  ppm("icon-message.ppm", buff, 256);
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
