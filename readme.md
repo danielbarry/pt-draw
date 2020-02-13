@@ -40,12 +40,14 @@ The following is documentation on the project:
 
 * [Algorithms](doc/algorithms.md)
 * [API](doc/api.md)
+* [Compiling](doc/compiling.md)
 * [File format](doc/file-format.md)
 * [Icons](doc/icons.md)
 
 ## TODO
 
 * [ ] Scaling bug (for small icons < 16 pixels)
+* [ ] Design tool (implement in C++ to directly use library)
 * [ ] Basic icon set
 * [ ] 7 bit ASCI font definition
 * [ ] Test coverage (prevent code regression)
