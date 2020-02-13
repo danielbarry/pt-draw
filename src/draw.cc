@@ -3,24 +3,63 @@
 #include <FL/Fl.H>
 #include <FL/Fl_Bitmap.H>
 #include <FL/Fl_Box.H>
+#include <FL/Fl_Input.H>
 
 #include "icons.h"
 #include "pt-draw.c"
 
-#define WIN_WIDTH 640
-#define WIN_HEIGHT 480
+#define WIN_MARGIN 10
+#define WIN_IMG 256
+#define WIN_TXT 25
+#define WIN_WIDTH (WIN_IMG + (WIN_MARGIN * 2))
+#define WIN_HEIGHT (WIN_IMG + (WIN_MARGIN * 4) + (WIN_TXT * 2))
 
 void Draw::init(){
-  /* TODO: Initialize the window. */
+  /* Create text input */
+  Fl_Input* input = new Fl_Input(
+    WIN_MARGIN,
+    WIN_MARGIN,
+    WIN_WIDTH - (WIN_MARGIN * 2),
+    WIN_TXT
+  );
+  input->value("Input");
+  input->when(FL_WHEN_CHANGED);
+  input->callback(
+    [](Fl_Widget* sender, void* origin){
+      /* TODO: Do something about it. */
+    },
+    this
+  );
+  /* Create text output */
+  Fl_Input* output = new Fl_Input(
+    WIN_MARGIN,
+    (WIN_MARGIN * 3) + WIN_IMG + WIN_TXT,
+    WIN_WIDTH - (WIN_MARGIN * 2),
+    WIN_TXT
+  );
+  output->value("Output");
+  output->when(FL_WHEN_CHANGED);
+  output->callback(
+    [](Fl_Widget* sender, void* origin){
+      /* TODO: Do something about it. */
+    },
+    this
+  );
   /* Create the test image */
-  UINT8 buff[(256 * 256) / 8];
-  UINT8 drawBuff[256 * 256];
-  pt_draw_create_bitmap(ICON_BLUETOOTH, ICON_BLUETOOTH_LEN, buff, 256);
-  expandImage(buff, 256 * 256, drawBuff);
+  UINT8 buff[(WIN_IMG * WIN_IMG) / 8];
+  UINT8 drawBuff[WIN_IMG * WIN_IMG];
+  pt_draw_create_bitmap(ICON_BLUETOOTH, ICON_BLUETOOTH_LEN, buff, WIN_IMG);
+  expandImage(buff, WIN_IMG * WIN_IMG, drawBuff);
   /* Draw the test image */
-  Fl_Box* box = new Fl_Box(10, 10, 256, 256, "canvas");
-  Fl_Bitmap* img = new Fl_Bitmap(buff, 256, 256);
+  Fl_Box* box = new Fl_Box(
+    WIN_MARGIN,
+    WIN_TXT + (WIN_MARGIN * 2),
+    WIN_IMG,
+    WIN_IMG
+  );
+  Fl_Bitmap* img = new Fl_Bitmap(buff, WIN_IMG, WIN_IMG);
   box->image(img);
+  /* Show widgets */
   box->show();
 }
 
