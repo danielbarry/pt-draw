@@ -1,4 +1,4 @@
-#include <FL/Fl_Browser.H>
+#include <FL/Fl_Double_Window.H>
 
 /**
  * draw.hh
@@ -7,20 +7,17 @@
  **/
 #ifndef DRAW_HH
 #define DRAW_HH
-  class Draw : public Fl_Browser{
+  class Draw : public Fl_Double_Window{
     public:
       /**
        * Draw()
        *
-       * Build the browser window.
+       * Build the window.
        *
-       * @param X The X location of the browser window.
-       * @param Y The Y location of the browser window.
-       * @param W The width of the browser window.
-       * @param H The height of the browser window.
-       * @param L The length of the browser window.
+       * @param w The width of the window.
+       * @param h The height of the window.
        **/
-      Draw(int X, int Y, int W, int H, const char* L = 0) : Fl_Browser(X, Y, W, H, L){
+      Draw(int w, int h, const char* title = 0) : Fl_Double_Window(w, h, title){
         /* Initialize the browser */
         init();
       }
