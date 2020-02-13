@@ -1,4 +1,15 @@
+#include <FL/Fl_Bitmap.H>
+#include <FL/Fl_Box.H>
 #include <FL/Fl_Double_Window.H>
+#include <FL/Fl_Input.H>
+
+#include "pt-draw.h"
+
+#define WIN_MARGIN 10
+#define WIN_IMG 256
+#define WIN_TXT 25
+#define WIN_WIDTH (WIN_IMG + (WIN_MARGIN * 2))
+#define WIN_HEIGHT (WIN_IMG + (WIN_MARGIN * 4) + (WIN_TXT * 2))
 
 /**
  * draw.hh
@@ -8,6 +19,13 @@
 #ifndef DRAW_HH
 #define DRAW_HH
   class Draw : public Fl_Double_Window{
+    private:
+      UINT8 buff[WIN_IMG * WIN_IMG];
+      Fl_Input* input;
+      Fl_Input* output;
+      Fl_Box* box;
+      Fl_Bitmap* img;
+
     public:
       /**
        * Draw()
@@ -31,14 +49,10 @@
       void init();
 
       /**
-       * expandImage()
+       * processInput()
        *
-       * Expand a binary array image to a byte array.
-       *
-       * @param a The primary array source.
-       * @param aLen Teh length of the input array.
-       * @param b The secondary array destination.
+       * Process the input text and regenerate the image.
        **/
-      void expandImage(unsigned char* a, int aLen, unsigned char* b);
+      void processInput();
   };
 #endif
