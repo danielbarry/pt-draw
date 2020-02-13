@@ -15,6 +15,12 @@ the code for this project.
 
 ## Build
 
+For the first time, you'll need to run the following to generate the `Makefile`
+
+    cmake .
+
+After this, routinely use:
+
     make
 
 ## Clean
@@ -26,3 +32,7 @@ the code for this project.
 For testing that the code is compiled and is working correctly:
 
     ./pt-draw-test
+
+For running the draw GUI for designing icons:
+
+    ./pt-draw
