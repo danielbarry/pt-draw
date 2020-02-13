@@ -1,9 +1,11 @@
 CMakeFiles/**
 
 *.cmake
+*.in
 *.ppm
 *.swp
 
 CMakeCache.txt
 Makefile
+pt-draw
 pt-draw-test
