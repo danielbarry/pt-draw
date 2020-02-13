@@ -58,9 +58,9 @@ void Draw::init(){
     WIN_IMG
   );
   Fl_Bitmap* img = new Fl_Bitmap(buff, WIN_IMG, WIN_IMG);
+  box->box(FL_BORDER_BOX);
   box->image(img);
-  /* Show widgets */
-  box->show();
+  box->redraw();
 }
 
 void Draw::expandImage(unsigned char* a, int aLen, unsigned char* b){
