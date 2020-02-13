@@ -9,6 +9,13 @@ void Draw::init(){
   /* TODO: Initialize the window. */
 }
 
+void Draw::expandImage(unsigned char* a, int aLen, unsigned char* b){
+  for(unsigned int i = 0; i < aLen; i++){
+    UINT8 r = a[i / 8] & (0b1 << (7 - (i % 8)));
+    b[i] = r ? 1 : 0;
+  }
+}
+
 /**
  * main()
  *

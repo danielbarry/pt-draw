@@ -22,11 +22,23 @@
         init();
       }
 
+    private:
       /**
        * init()
        *
        * Initialize the browser window.
        **/
       void init();
+
+      /**
+       * expandImage()
+       *
+       * Expand a binary array image to a byte array.
+       *
+       * @param a The primary array source.
+       * @param aLen Teh length of the input array.
+       * @param b The secondary array destination.
+       **/
+      void expandImage(unsigned char* a, int aLen, unsigned char* b);
   };
 #endif
