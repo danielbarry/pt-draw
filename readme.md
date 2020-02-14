@@ -42,6 +42,7 @@ The following is documentation on the project:
 * [API](doc/api.md)
 * [Compiling](doc/compiling.md)
 * [File format](doc/file-format.md)
+* [Font](doc/font.md)
 * [Icons](doc/icons.md)
 
 ## TODO
