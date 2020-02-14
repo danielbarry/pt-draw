@@ -47,7 +47,6 @@ The following is documentation on the project:
 ## TODO
 
 * [ ] Scaling bug (for small icons < 16 pixels)
-* [ ] Design tool (implement in C++ to directly use library)
 * [ ] Basic icon set
 * [ ] 7 bit ASCI font definition
 * [ ] Test coverage (prevent code regression)
