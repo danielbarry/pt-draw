@@ -1,3 +1,4 @@
+#include "font.h"
 #include "icons.h"
 #include "pt-draw.c"
 
@@ -33,6 +34,32 @@ void ppm(char* fn, UINT8* data, unsigned int size){
     fwrite(c, 1, 1, f);
   }
   fclose(f);
+}
+
+/**
+ * gen()
+ *
+ * Generate the font and icons.
+ **/
+void gen(){
+  UINT8 buff[BUFFER_SIZE];
+  /* -- Draw letters -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(FONT_A, FONT_A_LEN, buff, 256);
+  ppm("font-a.ppm", buff, 256);
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(FONT_B, FONT_B_LEN, buff, 256);
+  ppm("font-b.ppm", buff, 256);
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(FONT_C, FONT_C_LEN, buff, 256);
+  ppm("font-c.ppm", buff, 256);
+  /* -- Draw icon -- */
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(ICON_BLUETOOTH, ICON_BLUETOOTH_LEN, buff, 256);
+  ppm("icon-bluetooth.ppm", buff, 256);
+  memset(buff, 0, BUFFER_SIZE);
+  pt_draw_create_bitmap(ICON_MESSAGE, ICON_MESSAGE_LEN, buff, 256);
+  ppm("icon-message.ppm", buff, 256);
 }
 
 /**
@@ -95,14 +122,8 @@ int main(){
   memset(buff, 0, BUFFER_SIZE);
   pt_draw_create_bitmap(dollar, 14, buff, 256);
   ppm("dollar.ppm", buff, 256);
-  /* -- Draw bluetooth icon -- */
-  memset(buff, 0, BUFFER_SIZE);
-  pt_draw_create_bitmap(ICON_BLUETOOTH, ICON_BLUETOOTH_LEN, buff, 256);
-  ppm("icon-bluetooth.ppm", buff, 256);
-  /* -- Draw message icon -- */
-  memset(buff, 0, BUFFER_SIZE);
-  pt_draw_create_bitmap(ICON_MESSAGE, ICON_MESSAGE_LEN, buff, 256);
-  ppm("icon-message.ppm", buff, 256);
+  /* Generate defaults */
+  gen();
   /* Print result */
   printf("%i / %i PASS\n", pass, pass + fail);
   printf("%i / %i FAIL\n", fail, pass + fail);
