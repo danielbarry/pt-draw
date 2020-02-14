@@ -61,6 +61,7 @@ void Draw::processInput(){
   std::vector<std::string> parts = split(rawInput, ",");
   /* Clean up parts and put into the byte array */
   for(int p = 0; p < parts.size(); p++){
+    /* TODO: Math processing should be more robust. */
     /* Check if OR needs to be performed */
     if(parts[p].find("|") != std::string::npos){
       int orRes = 0;
@@ -71,7 +72,7 @@ void Draw::processInput(){
         if(orParts[o].find("-") != std::string::npos){
           std::vector<std::string> minusParts = split(orParts[o], "-");
           /* Loop over minus parts */
-          int minusRes = std::stoi(minusParts[0]);
+          int minusRes = strToInt(minusParts[0], 0);
           for(int m = 1; m < minusParts.size(); m++){
             minusRes -= strToInt(minusParts[m], 0);
           }
