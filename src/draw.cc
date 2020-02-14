@@ -2,6 +2,8 @@
 
 #include <FL/Fl.H>
 
+#define NUM_SEGS 16
+
 #include "icons.h"
 #include "pt-draw.c"
 
