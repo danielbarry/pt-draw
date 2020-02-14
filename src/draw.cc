@@ -71,18 +71,18 @@ void Draw::processInput(){
           /* Loop over minus parts */
           int minusRes = std::stoi(minusParts[0]);
           for(int m = 1; m < minusParts.size(); m++){
-            minusRes -= std::stoi(minusParts[m]);
+            minusRes -= strToInt(minusParts[m], 0);
           }
           /* Replace section with result */
           orParts[o] = intToHexStr(minusRes);
         }
-        orRes |= std::stoi(orParts[o], NULL, 16);
+        orRes |= strToInt(orParts[o], 16);
       }
       /* Replace section with result */
       parts[p] = intToHexStr(orRes);
     }
     /* Save result */
-    inBuff[p] = std::stoi(parts[p], NULL, 16);
+    inBuff[p] = strToInt(parts[p], 16);
   }
   /* Clear the original buffer */
   memset(buff, 0, WIN_IMG * WIN_IMG);

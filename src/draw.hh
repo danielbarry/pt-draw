@@ -133,5 +133,27 @@
         ss << "0x" << std::hex << i;
         return std::string(ss.str());
       }
+
+      /**
+       * strToInt()
+       *
+       * Convert a string to an integer safely.
+       *
+       * @param str The string to be converted.
+       * @param base The integer conversion base. If less than zero, assume
+       * base 10.
+       * @return The converted value, otherwise 0.
+       **/
+      static int strToInt(std::string str, int base){
+        try{
+          if(base <= 0){
+            return std::stoi(str);
+          }else{
+            return std::stoi(str, NULL, base);
+          }
+        }catch(...){
+          return 0;
+        }
+      }
   };
 #endif
