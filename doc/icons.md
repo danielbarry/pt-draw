@@ -14,3 +14,7 @@ The following are generations from the available icons.
 ### Bluetooth
 
 ![Bluetooth icon](icon-bluetooth.png)
+
+### Message
+
+![Message icon](icon-message.png)
