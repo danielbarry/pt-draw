@@ -43,12 +43,51 @@ void Draw::init(){
 }
 
 void Draw::processInput(){
-  /* TODO: Process input. */
-  output->value(input->value());
+  /* Process input */
+  std::string rawInput = input->value();
+  /* Remove special characters */
+  rawInput = removeAll(rawInput, '{');
+  rawInput = removeAll(rawInput, '}');
+  rawInput = removeAll(rawInput, '(');
+  rawInput = removeAll(rawInput, ')');
+  rawInput = removeAll(rawInput, ' ');
+  rawInput = removeAll(rawInput, ';');
+  /* Swap special strings */
+  rawInput = replaceAll(rawInput, "CURV", intToHexStr(CURV));
+  rawInput = replaceAll(rawInput, "LINE", intToHexStr(LINE));
+  /* Split up into parts */
+  std::vector<std::string> parts = split(rawInput, ",");
+  /* Clean up parts and put into the byte array */
+  for(int p = 0; p < parts.size(); p++){
+    /* Check if OR needs to be performed */
+    if(parts[p].find("|") != std::string::npos){
+      int orRes = 0;
+      std::vector<std::string> orParts = split(parts[p], "|");
+      /* Loop over OR parts */
+      for(int o = 0; o < orParts.size(); o++){
+        /* Check if minus needs to be performed */
+        if(orParts[o].find("-") != std::string::npos){
+          std::vector<std::string> minusParts = split(orParts[o], "-");
+          /* Loop over minus parts */
+          int minusRes = std::stoi(minusParts[0]);
+          for(int m = 1; m < minusParts.size(); m++){
+            minusRes -= std::stoi(minusParts[m]);
+          }
+          /* Replace section with result */
+          orParts[o] = intToHexStr(minusRes);
+        }
+        orRes |= std::stoi(orParts[o], NULL, 16);
+      }
+      /* Replace section with result */
+      parts[p] = intToHexStr(orRes);
+    }
+    /* Save result */
+    inBuff[p] = std::stoi(parts[p], NULL, 16);
+  }
   /* Clear the original buffer */
   memset(buff, 0, WIN_IMG * WIN_IMG);
   /* Create a new image */
-  pt_draw_create_bitmap(ICON_BLUETOOTH, ICON_BLUETOOTH_LEN, buff, WIN_IMG);
+  pt_draw_create_bitmap(inBuff, parts.size(), buff, WIN_IMG);
   /* Reverse pixel bits for FLTK */
   for(unsigned int i = 0; i < (WIN_IMG * WIN_IMG) / 8; i++){
     unsigned char b = buff[i];
@@ -65,6 +104,8 @@ void Draw::processInput(){
   img = new Fl_Bitmap(buff, WIN_IMG, WIN_IMG);
   box->image(img);
   box->redraw();
+  /* TODO: Produce output. */
+  output->value(rawInput.c_str());
 }
 
 /**
