@@ -45,6 +45,8 @@ void Draw::init(){
 }
 
 void Draw::processInput(){
+  /* Clear input buffer */
+  memset(inBuff, 0, MAX_BUFF);
   /* Process input */
   std::string rawInput = input->value();
   /* Remove special characters */
